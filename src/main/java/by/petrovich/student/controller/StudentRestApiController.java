@@ -2,7 +2,6 @@ package by.petrovich.student.controller;
 
 import by.petrovich.student.dto.StudentDto;
 import by.petrovich.student.entity.Student;
-import by.petrovich.student.exception.ResourceNotFoundException;
 import by.petrovich.student.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,47 +18,35 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/api/v1/students")
 public class StudentRestApiController {
     private final StudentService studentService;
 
-//    @Autowired
-//    public StudentController(StudentService studentService) {
-//        this.studentService = studentService;
-//    }
-
-    @PostMapping("/save")
-    public ResponseEntity save(@RequestBody StudentDto studentDto) {
+    @PostMapping
+    public ResponseEntity create(@RequestBody StudentDto studentDto) {
         Student student = studentService.create(studentDto);
         return ResponseEntity.ok(student);
     }
 
-    @GetMapping("/students")
+    @GetMapping
     public List<Student> findAll() {
         return studentService.readAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity findStudent(@PathVariable long id) {
-        Student student = studentService.read(id).orElseThrow(() -> new ResourceNotFoundException("Student doesn't exist with id: " + id));
-        return ResponseEntity.ok(student);
+        return ResponseEntity.ok(studentService.read(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public void delete(@PathVariable long id) {
         studentService.delete(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Student> update(@PathVariable long id,
                                           @RequestBody StudentDto studentDto) {
-        Student student = studentService.read(id).
-                orElseThrow(() -> new ResourceNotFoundException("Student doesn't exist with id: " + id));
-        Student studentUpdated = new Student();
-        if (student != null) {
-            studentUpdated = studentService.update(studentDto);
-        }
-        return ResponseEntity.ok(studentUpdated);
+        return ResponseEntity.ok(studentService.update(id, studentDto));
     }
 
 }
