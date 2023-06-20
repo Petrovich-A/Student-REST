@@ -6,3 +6,13 @@ Student REST application
 Реализовать в Вашем веб-сервисе валидацию параметров запроса и путей запроса через BeanValidation.
 
 Добавить swagger в этот проект! За основу берем demo-rest
+
+
+ENDPOINT	METHOD	ACTIONS
+
+/tasks	POST	Create a new task
+/tasks	GET	Retrieve all tasks
+/tasks/:id	GET	Retrieve one task by its ID
+/tasks/:id	PATCH	Update a task by its ID
+/tasks/:id	DELETE	Delete a task by its ID
+
