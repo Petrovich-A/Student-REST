@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +23,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
+    @Size(min = 2, max = 20, message = "First name must be between 2 and 20 characters")
     private String firstName;
     @Column
+    @Size(min = 2, max = 20, message = "Last name must be between 2 and 20 characters")
     private String lastName;
 
 }
