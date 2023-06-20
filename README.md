@@ -1,18 +1,29 @@
-# Student-REST
-Student REST application
+<!--suppress HtmlDeprecatedAttribute -->
+<h1 align="center" id="title">Student REST API application</h1>
 
-Установить Postman и разобраться, как выполнять различные запросы к Вашему веб-сервису из него.
-Написать свой rest сервис (GET, POST, PUT, DELETE операции). Сервис должен выполнять все операции над таблицей students, но возвращать и получать данные  должен в JSON формате. Для отправки и получения данных использовать паттерн DTO (DTO классы).
-Реализовать в Вашем веб-сервисе валидацию параметров запроса и путей запроса через BeanValidation.
+<p id="description">The Student REST API (GET, POST, PUT, DELETE operations) is a Java-based web service built with Spring framework that provides endpoints
+for managing student data. It supports all HTTP methods and is scalable with multiple data sources and authentication
+mechanisms. The API is secure includes error handling and logging capabilities and is easy to integrate with other systems.
+It's a powerful tool for managing student data efficiently and securely.</p>
 
-Добавить swagger в этот проект! За основу берем demo-rest
+<h2>💻 Built with</h2>
 
+Technologies used in the project:
 
-ENDPOINT	METHOD	ACTIONS
+* spring boot
+* spring data JPA
+* postgreSQL
+* lombok
+* tomcat
+* flyway
+* swagger
 
-/tasks	POST	Create a new task
-/tasks	GET	Retrieve all tasks
-/tasks/:id	GET	Retrieve one task by its ID
-/tasks/:id	PATCH	Update a task by its ID
-/tasks/:id	DELETE	Delete a task by its ID
+<h2>Project Screenshots:</h2>
+
+<img src="src/main/resources/templates/img/read.png" alt="project-screenshot">
+<img src="src/main/resources/templates/img/findAll.png" alt="project-screenshot">
+<img src="src/main/resources/templates/img/create.png" alt="project-screenshot">
+<img src="src/main/resources/templates/img/delete.png" alt="project-screenshot">
+<img src="src/main/resources/templates/img/update.png" alt="project-screenshot">
+
 
