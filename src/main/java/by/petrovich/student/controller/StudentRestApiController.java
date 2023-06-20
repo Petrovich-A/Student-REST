@@ -6,7 +6,6 @@ import by.petrovich.student.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@Validated
 @RequestMapping("/api/v1/students")
 public class StudentRestApiController {
     private final StudentService studentService;

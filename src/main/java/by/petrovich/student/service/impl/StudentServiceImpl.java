@@ -40,16 +40,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public Student update(Long id, StudentDto studentDto) {
-        Student studentFound = studentRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Student doesn't exist with id: " + id));
-        Student student = new Student();
-        if (studentFound != null) {
-            student = Student.builder()
-                    .id(id)
-                    .firstName(studentDto.getFirstName())
-                    .lastName(studentDto.getLastName())
-                    .build();
-        }
+        Student student = studentRepository.findById(id)
+                .map(s -> Student.builder()
+                        .id(id)
+                        .firstName(studentDto.getFirstName())
+                        .lastName(studentDto.getLastName())
+                        .build())
+                .orElseThrow(() -> new ResourceNotFoundException("Student doesn't exist with id: " + id));
         return studentRepository.save(student);
     }
 
