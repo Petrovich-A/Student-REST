@@ -11,7 +11,7 @@
 	<groupId>by.petrovich</groupId>
 	<artifactId>student</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>student-rest-api</name>
 	<description>Spring Boot REST API Java app</description>
 	<properties>
