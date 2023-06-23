@@ -17,7 +17,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
     @Override
-    public List<Student> readAll() {
+    public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student read(Long id) {
+    public Student find(Long id) {
         return studentRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFoundException("Student doesn't exist with id: " + id));
     }

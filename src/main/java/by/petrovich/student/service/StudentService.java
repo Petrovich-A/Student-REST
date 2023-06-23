@@ -4,14 +4,13 @@ import by.petrovich.student.dto.StudentDto;
 import by.petrovich.student.entity.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentService {
-    List<Student> readAll();
+    List<Student> findAll();
 
     Student create(StudentDto studentDto);
 
-    Student read(Long id);
+    Student find(Long id);
 
     Student update(Long id, StudentDto studentDto);
 

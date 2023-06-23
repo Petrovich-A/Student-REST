@@ -1,6 +1,5 @@
 package by.petrovich.student.controller;
 
-import by.petrovich.student.StudentRestApiApplication;
 import by.petrovich.student.dto.StudentDto;
 import by.petrovich.student.entity.Student;
 import by.petrovich.student.service.StudentService;
@@ -13,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +43,7 @@ public class StudentRestApiController {
     })
     @PostMapping
     public ResponseEntity create(@RequestBody @Valid StudentDto studentDto) {
-        Student student = studentService.create(studentDto);
-        return ResponseEntity.ok(student);
+        return ResponseEntity.ok(studentService.create(studentDto));
     }
 
     @Operation(summary = "Get all students", tags = "student")
@@ -58,7 +57,7 @@ public class StudentRestApiController {
     })
     @GetMapping
     public List<Student> findAll() {
-        return studentService.readAll();
+        return studentService.findAll();
     }
 
     @Operation(summary = "Get student by id", tags = "student")
@@ -72,8 +71,8 @@ public class StudentRestApiController {
             @ApiResponse(responseCode = "404", description = "Student doesn't exist with id:", content = @Content)
     })
     @GetMapping("{id}")
-    public ResponseEntity findStudent(@PathVariable long id) {
-        return ResponseEntity.ok(studentService.read(id));
+    public ResponseEntity<Student> findStudent(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.find(id));
     }
 
     @Operation(summary = "Delete student by id", tags = "student")
@@ -86,8 +85,13 @@ public class StudentRestApiController {
                     })
     })
     @DeleteMapping("{id}")
-    public void delete(@PathVariable long id) {
-        studentService.delete(id);
+    public ResponseEntity<HttpStatus> delete(@PathVariable Long id) {
+        try {
+            studentService.delete(id);
+            return ResponseEntity.ok(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Operation(summary = "Update student by id", tags = "student")
